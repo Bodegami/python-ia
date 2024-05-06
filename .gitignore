@@ -25,6 +25,9 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+curso_1_openai/
+env
+*.env
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
