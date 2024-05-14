@@ -10,7 +10,6 @@ modelo = "gpt-3.5-turbo"
 
 def carrega(nome_do_arquivo):
     try:
-        print("cheguei aqui carrega")
         with open(nome_do_arquivo, "r") as arquivo:
             
             dados = arquivo.read()
@@ -21,7 +20,6 @@ def carrega(nome_do_arquivo):
 def salva(nome_do_arquivo, conteudo):
     try:
         with open(nome_do_arquivo, "w", encoding="utf-8") as arquivo:
-            print("cheguei aqui salva")
             arquivo.write(conteudo)
     except IOError as e:
         print(f"Erro ao salvar arquivo: {e}")
@@ -69,4 +67,6 @@ def analisador_sentimentos(produto):
     except openai.APIError as e:
         print(f"Erro de API: {e}")    
     
-analisador_sentimentos("Camisetas de algodão orgânico")
+lista_de_produtos = ["Camisetas de algodão orgânico", "Jeans feitos com materiais reciclados", "Maquiagem mineral"]
+for produto in lista_de_produtos:
+    analisador_sentimentos(produto)
