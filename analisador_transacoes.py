@@ -6,7 +6,7 @@ import json
 load_dotenv()
 
 cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-modelo = "gpt-3.5-turbo"
+modelo = "gpt-4"
 
 def carrega(nome_do_arquivo):
     try:
@@ -100,7 +100,7 @@ def gerar_parecer(transacao):
 
     lista_mensagens = [
         {
-            "role": "user",
+            "role": "system",
             "content": prompt_sistema
         }
     ]
@@ -114,6 +114,34 @@ def gerar_parecer(transacao):
     print("Finalizou a geração de parecer")
     return conteudo    
 
+def gerar_recomendacao(parecer):
+    print("3. Gerando recomendações")
+
+    prompt_sistema = f"""
+    Para a seguinte transação, forneça uma recomendação apropriada baseada no status e nos detalhes da transação da Transação: {parecer}
+
+    As recomendações podem ser "Notificar Cliente", "Acionar setor Anti-Fraude" ou "Realizar Verificação Manual".
+    Elas devem ser escritas no formato técnico.
+
+    Inclua também uma classificação do tipo de fraude, se aplicável. 
+    """
+
+    lista_mensagens = [
+        {
+            "role": "system",
+            "content": prompt_sistema
+        }
+    ]
+
+    resposta = cliente.chat.completions.create(
+        messages = lista_mensagens,
+        model=modelo,
+    )
+
+    conteudo = resposta.choices[0].message.content
+    print("Finalizou a geração de recomendação")
+    return conteudo
+
 
 lista_transacoes = carrega("dados/transacoes.csv")
 transacoes_analisadas = analisar_transacao(lista_transacoes)
@@ -121,5 +149,8 @@ transacoes_analisadas = analisar_transacao(lista_transacoes)
 for transacao in transacoes_analisadas["transacoes"]:
     if transacao["status"] == "Possível Fraude":
         parecer = gerar_parecer(transacao)
-        print(parecer)
-
+        recomendacao = gerar_recomendacao(parecer)
+        id_transacao = transacao["id"]
+        produto_transacao = transacao["nome_produto"]
+        status_transacao = transacao["status"]
+        salva(f"transacao-{id_transacao}-{produto_transacao}-{status_transacao}.txt", recomendacao)

@@ -1,0 +1,15 @@
+Recomendação:
+
+Com base no status e nos detalhes fornecidos para a transação de ID: 9c, recomendo implementar as seguintes ações:
+
+1. Notificar Cliente: Informe ao cliente sobre a transação suspeita para confirmar se foi ele quem realizou a transação. Fornecer os detalhes do horário, localização, valor e nome do produto para que ele possa tomar uma decisão informada.
+
+2. Acionar setor Anti-Fraude: Devido à classificação de ‘Possível Fraude’, a equipe Anti-Fraude deve ser acionada para uma investigação mais aprofundada. Esta equipe possui ferramentas e técnicas avançadas para detectar atividades fraudulentas e pode ajudar a prevenir futuros incidentes.
+
+3. Realizar Verificação Manual: Como a transação é de um valor significativamente alto e há um parecer indicando possível fraude, a justificativa é suficiente para realizar uma verificação manual. A validação manual pode ajudar a identificar qualquer atividade fraudulenta e proteger o cliente e o negócio contra possíveis perdas financeiras.
+
+Classificação de Fraude:
+
+Baseado nos detalhes fornecidos, esta transação pode ser classificada como 'Fraude de Identidade', onde o fraudador pode estar tentando se passar pelo cliente real para fazer compras elevadas. Estes tipos de fraudes são comumente encontrados em transações de alto risco e podem resultar em sérias consequências financeiras para o cliente e para o negócio.
+
+Por favor, implemente as recomendações imediatamente para prevenir qualquer perda financeira.
