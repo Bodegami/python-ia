@@ -1,4 +1,5 @@
 from langchain_openai import ChatOpenAI
+from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 import os
 
@@ -10,7 +11,13 @@ numero_de_dias = 7
 numero_de_criancas = 2
 atividade = "praia"
 
-prompt = f"Crie um roteiro de viagem {numero_de_dias} dias, para uma família com {numero_de_criancas} crianças, que gostam de {atividade}"
+modelo_do_prompt = PromptTemplate.from_template(
+    "Crie um roteiro de viagem {numero_de_dias} dias, para uma família com {numero_de_criancas} crianças, que gostam de {atividade}"
+)
+
+prompt = modelo_do_prompt.format(numero_de_dias = numero_de_dias, 
+                        numero_de_criancas = numero_de_criancas, 
+                        atividade = atividade)
 
 print(prompt)
 
