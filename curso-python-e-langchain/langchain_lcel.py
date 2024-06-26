@@ -1,7 +1,5 @@
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
-from langchain.chains import SimpleSequentialChain
 from langchain.globals import set_debug
 from dotenv import load_dotenv
 import os

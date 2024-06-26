@@ -36,4 +36,3 @@ resposta = cliente.chat.completions.create(
 )
 
 print(resposta.choices[0].message.content)
-

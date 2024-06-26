@@ -1,15 +1,9 @@
 from langchain_openai import ChatOpenAI
-from langchain.prompts import PromptTemplate, ChatPromptTemplate
-from langchain.chains import LLMChain
-from langchain.chains import SimpleSequentialChain
 from langchain.chains import ConversationChain
 from langchain.memory import ConversationSummaryMemory
 from langchain.globals import set_debug
 from dotenv import load_dotenv
 import os
-from langchain_core.pydantic_v1 import Field, BaseModel
-from langchain_core.output_parsers import JsonOutputParser, StrOutputParser
-from operator import itemgetter
 
 load_dotenv()
 apikey = os.getenv("OPENAI_API_KEY")
