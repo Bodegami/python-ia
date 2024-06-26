@@ -1,10 +1,6 @@
 from langchain_openai import ChatOpenAI
-from langchain.prompts import PromptTemplate, ChatPromptTemplate
-from langchain.chains import LLMChain
-from langchain.chains import SimpleSequentialChain
-from langchain.chains import ConversationChain
-from langchain.memory import ConversationSummaryMemory
-from langchain_community.document_loaders import TextLoader
+
+from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import CharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -12,9 +8,6 @@ from langchain.chains import RetrievalQA
 from langchain.globals import set_debug
 from dotenv import load_dotenv
 import os
-from langchain_core.pydantic_v1 import Field, BaseModel
-from langchain_core.output_parsers import JsonOutputParser, StrOutputParser
-from operator import itemgetter
 
 load_dotenv()
 apikey = os.getenv("OPENAI_API_KEY")
@@ -25,9 +18,16 @@ llm = ChatOpenAI(
     temperature=0.7,
     api_key=apikey)
 
-carregador = TextLoader(file_path="GTB_platinum_Nov23.txt", encoding="utf-8")
-documentos = carregador.load()
+carregadores = [
+    PyPDFLoader("GTB_standard_Nov23.pdf"),
+    PyPDFLoader("GTB_platinum_Nov23.pdf"),
+    PyPDFLoader("GTB_gold_Nov23.pdf"),
+    PyPDFLoader("GTB_black_Nov23.pdf")
+]
 
+documentos = []
+for carregador in carregadores:
+    documentos.extend(carregador.load())
 
 quebrador = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 textos = quebrador.split_documents(documentos)
