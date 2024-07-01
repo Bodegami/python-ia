@@ -1,12 +1,15 @@
+from recomenda_filmes import indica_filmes
+
 
 def main():
-   teste()
+   resposta = input_usuario()
+   result = indica_filmes(resposta)
+   print(result)
 
 
 
-
-def teste():
-   print("Hellow")
+def input_usuario():
+   return input("Qual tema gostaria de procurar?") 
 
 
 
