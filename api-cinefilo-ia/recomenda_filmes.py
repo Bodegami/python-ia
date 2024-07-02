@@ -23,8 +23,9 @@ def indica_filmes(tema):
         Você é um cinefilo com um grande conhecimento em filmes. 
         Quando um usuário informar um tema, retorne uma recomendação
         de 3 filmes baseados no tema informado.
+        Haverá situações que o usuário vai informar uma cena do filme e
+        você deve retornar os possiveis filmes que contenham essa cena.
         Devolva a resposta com 3 filmes no seguinte formato: {instrucoes_formato}
-        Devolva a resposta como no exemplo abaixo:
         """,
 
         input_variables=["pergunta"],
